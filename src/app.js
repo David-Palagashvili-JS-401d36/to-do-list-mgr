@@ -4,14 +4,15 @@ import { Nav, Navbar}  from 'react-bootstrap';
 
 import ToDo from './components/todo/todo.js';
 
-export default class App extends React.Component {}
-
-// React compenents/functions should return JSX.
-export default () => {
-//   render() {
-    return (
-      <>
-        <ToDo />
-      </>
-    );
+export default class App extends React.Component {
+    render() {
+        return (
+            <>
+                <Navbar bg="primary" variant="light">
+                    <Nav.Link href="/"> Main </Nav.Link>
+                </Navbar>
+                <ToDo />
+            </>
+        );
+    }
 }
