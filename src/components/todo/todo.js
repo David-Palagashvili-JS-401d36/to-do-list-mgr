@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
 
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap'; // these are pulled from the react boot strap library to be used in the JSX part of this component.
 
 import './todo.scss';
 
@@ -49,27 +49,36 @@ const ToDo = () => {
         setCount(listCount);
     }, [list]);
 
-    return (
+    return ( // React JSX items: Container, Row, and Column are used here.
         <>
-            <header>
-                <h2>
-                    There are Items To Complete
-                </h2>
-            </header>
+            <Container fluid>
+                <Row fluid>
+                    <section className = "msg-counter">
+                        <h2>
+                            There are {count} items to complete!
+                        </h2>
+                    </section>
+                </Row>
 
-            <section className="todo">
+                <Row fluid>
+                    <section className="todo">
+                        <Col>
+                            <div>
+                                <TodoForm handleSubmit={addItem} />
+                            </div>
+                        </Col>
 
-                <div>
-                    <TodoForm handleSubmit={this.addItem} />
-                </div>
-
-                <div>
-                    <TodoList
-                        list={this.state.list}
-                        handleComplete={this.toggleComplete}
-                    />
-                </div>
-            </section>
+                        <Col>
+                            <div>
+                                <TodoList
+                                    list={list}
+                                    handleComplete={toggleComplete}
+                                />
+                            </div>
+                        </Col>
+                    </section>
+                </Row>
+            </Container>
         </>
     );
 };
