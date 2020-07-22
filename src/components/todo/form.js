@@ -1,14 +1,13 @@
 import React from 'react';
 
-class TodoForm extends React.Component {
+import Button from 'react-bootstrap/Button'
 
-    constructor(props) {
-        super(props);
-        this.state = { item: {} };
-    }
+const TodoForm = (props) => {
+    //bring in the hook
+    const [formItem, changeItem] = useState({});
     
-    handleInputChange = e => {
-        this.setState({ item: { ...this.state.item, [e.target.name]: e.target.value } });
+    const handleInputChange = (e) => {
+        changeItem({ ...formItem, [e.target.name]: e.target.value } });
     };
 
     handleSubmit = (e) => {
