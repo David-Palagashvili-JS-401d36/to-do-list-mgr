@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+
 import TodoForm from './form.js';
 import TodoList from './list.js';
+
+import {Container, Row, Col} from 'react-bootstrap';
 
 import './todo.scss';
 
@@ -9,25 +12,26 @@ const ToDo = () => {
     const [list, setList] = useState([]);
     const [count, setCount] = useState(0);
 
-    addItem = (item) => {
+    const addItem = (item) => {
         item._id = Math.random();
         item.complete = false;
-        this.setState({ list: [...this.state.list, item] });
+
+        setList([...list, item]);
     };
 
-    toggleComplete = id => {
+    const toggleComplete = (id) => {
 
-        let item = this.state.list.filter(i => i._id === id)[0] || {};
+        let item = list.filter(i => i._id === id)[0] || {};
 
         if (item._id) {
             item.complete = !item.complete;
-            let list = this.state.list.map(listItem => listItem._id === item._id ? item : listItem);
-            this.setState({ list });
+            let remainingToDos = list.map(listItem => listItem._id === item._id ? item : listItem);
+            setList(remainingToDos);
         }
 
     };
 
-    componentDidMount() {
+    useEffect(() => {
         let list = [
             { _id: 1, complete: false, text: 'Clean the Kitchen', difficulty: 3, assignee: 'Person A' },
             { _id: 2, complete: false, text: 'Do the Laundry', difficulty: 2, assignee: 'Person A' },
@@ -36,34 +40,38 @@ const ToDo = () => {
             { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B' },
         ];
 
-        this.setState({ list });
-    }
+        setList(list);
+    }, []);
 
-    render() {
-        return (
-            <>
-                <header>
-                    <h2>
-                        There are {this.state.list.filter(item => !item.complete).length} Items To Complete
-          </h2>
-                </header>
+    useEffect(() => {
+        let listCount = list.filter(item => !item.complete).length;
 
-                <section className="todo">
+        setCount(listCount);
+    }, [list]);
 
-                    <div>
-                        <TodoForm handleSubmit={this.addItem} />
-                    </div>
+    return (
+        <>
+            <header>
+                <h2>
+                    There are Items To Complete
+                </h2>
+            </header>
 
-                    <div>
-                        <TodoList
-                            list={this.state.list}
-                            handleComplete={this.toggleComplete}
-                        />
-                    </div>
-                </section>
-            </>
-        );
-    }
-}
+            <section className="todo">
+
+                <div>
+                    <TodoForm handleSubmit={this.addItem} />
+                </div>
+
+                <div>
+                    <TodoList
+                        list={this.state.list}
+                        handleComplete={this.toggleComplete}
+                    />
+                </div>
+            </section>
+        </>
+    );
+};
 
 export default ToDo;
