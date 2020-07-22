@@ -1,19 +1,18 @@
 //bring in the hook
 import React, {useState} from 'react';
 
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 
 const TodoForm = (props) => {
     const [formItem, changeItem] = useState({});
-    
+    // handel submit holds context
     const handleInputChange = (e) => {
         changeItem( {...formItem, [e.target.name]: e.target.value} );
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         e.target.reset();
-        
+
         props.handleSubmit(formItem);
         changeItem({});
     };
@@ -36,9 +35,9 @@ const TodoForm = (props) => {
                 </label>
                 <label>
                     <span>Assigned To</span>
-                    <input type="text" name="assignee" placeholder="Assigned To" onChange={this.handleInputChange} />
+                    <input type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />
                 </label>
-                <button>Add Item</button>
+                <Button type="submit">Add Item</Button>
             </form>
         </>
     );
