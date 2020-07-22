@@ -17,7 +17,7 @@ const TodoForm = (props) => {
         changeItem({});
     };
 
-    return (
+    return ( // react button from bootstrap appears here
         <>
             <h3>Add Item</h3>
             <form onSubmit={handleSubmit}>
