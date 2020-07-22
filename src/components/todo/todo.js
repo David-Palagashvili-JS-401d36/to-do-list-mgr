@@ -4,14 +4,10 @@ import TodoList from './list.js';
 
 import './todo.scss';
 
-class ToDo extends React.Component {
+const ToDo = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            list: [],
-        };
-    }
+    const [list, setList] = useState([]);
+    const [count, setCount] = useState(0);
 
     addItem = (item) => {
         item._id = Math.random();

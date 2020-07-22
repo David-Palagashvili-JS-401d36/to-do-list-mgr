@@ -5,17 +5,17 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 const TodoList = (props) => {
 
-    const handleStatus = (item) => {
+    const handleList = (item) => {
         if (item.complete === true) {
-            return 'success';
+            return 'great success';
         }
-        return 'failure';
+        return 'terrible failure';
     };
 
     return( // variant flush 
         <ListGroup as="ul" variant="flush">
             {props.list.map(item => (
-                <ListGroup.Item as="li" action variant={handleStatus(item)}
+                <ListGroup.Item as="li" action variant={handleList(item)}
                     className={`complete-${item.complete.toString()}`}
                     key={item._id}
                 >
