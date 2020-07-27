@@ -23,12 +23,20 @@ body, html {
 
 }
 
+.nav-link {
+    background-color: whitesmoke;
+}
+
+.nav-link:hover {
+    color: blue;
+}
+
 .todo {
 
     display:flex;
     flex-direction:row;
     justify-content: flex-start;
-    margin: 2em;
+    margin: auto;
 
     form {
 
@@ -54,24 +62,16 @@ body, html {
             display:flex;
             flex-direction:row;
             font-size: .75em;
-            margin: .75em .5em;
+            // margin: .75em .5em;
 
             &.complete-true {
               span {
-                background: pink;
                 text-decoration:line-through;
-                &:hover {
-                   background: seagreen;
-                }
               }
             }
 
             span {
-                background: #e0e0e0;
                 cursor:pointer;
-                &:hover {
-                    background: pink;
-                }
             }
              span, input {
                  border: .5px solid #eee;
@@ -92,4 +92,12 @@ body, html {
         }
     }
 
+}
+
+.count-message {
+    background-color: skyblue;
+    color: white;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
 }

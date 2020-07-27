@@ -10,8 +10,8 @@ export default class App extends React.Component {
     render() {
         return (
             <>
-                <Navbar bg="light" expand="lg">
-                    <Nav.Link href="/"> Main </Nav.Link>
+                <Navbar className="navbar" bg="light" expand="lg">
+                    <Nav.Link href="/"> Home </Nav.Link>
                 </Navbar>
 
                 <ToDo />
